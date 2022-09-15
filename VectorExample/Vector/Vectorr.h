@@ -41,13 +41,36 @@ class Vector
       Vector& operator =(Vector&& other) = delete;
 
     public:
+        /**
+        */
         Vector(int size);
+
+        /**
+        */
         ~Vector();
+
+        /**
+        */
         std::string& ToString();
+
+        /**
+        */
         void FillVector(std::istream& in = std::cin);
+
+        /**
+        */
         void FillRandomVector();
+
+        /**
+        */
         int GetMin();
+
+        /**
+        */
         int GetMax();
+
+        /**
+        */
         void Sort();
 
 };
