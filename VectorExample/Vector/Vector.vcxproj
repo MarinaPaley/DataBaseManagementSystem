@@ -142,6 +142,9 @@
   <ItemGroup>
     <ClInclude Include="Vectorr.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Vectorr.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

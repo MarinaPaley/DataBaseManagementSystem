@@ -47,11 +47,15 @@ class Vector
 
         /**
         */
+        Vector(std::initializer_list<int> values);
+
+        /**
+        */
         ~Vector();
 
         /**
         */
-        std::string& ToString();
+        std::string ToString();
 
         /**
         */
