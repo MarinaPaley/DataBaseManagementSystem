@@ -2,7 +2,9 @@
 #include <sstream>
 #include <exception>
 
-Vector::Vector(int size)
+using namespace dbms;
+
+Vector::Vector(const int size)
 {
     if (size < 0)
     {
@@ -33,12 +35,40 @@ Vector::~Vector()
     }
 }
 
+size_t dbms::Vector::GetSize() const noexcept
+{
+    return this->size;
+}
+
 std::string Vector::ToString()
 {
     std::stringstream buffer;
+    buffer << "{ ";
     for (size_t index = 0; index < this->size; index++)
     {
-        buffer << this->data[index];
+        buffer << this->data[index] << ' ';
     }
+    buffer << " }";
     return buffer.str();
+}
+
+const int& dbms::Vector::operator[](std::size_t idx)
+{
+    if (idx > this->GetSize())
+    {
+        throw std::out_of_range("Индекс превосходит размер массива.");
+    }
+    return this->data[idx];
+}
+
+std::wstring dbms::ToString(dbms::Vector& vector)
+{
+    std::wstringstream buffer;
+    buffer << L'{ ';
+    for (size_t i = 0; i < vector.GetSize(); i++)
+    {
+        buffer << vector[i] << L' ';
+    }
+    buffer << L'}';
+    return std::wstring();
 }

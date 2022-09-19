@@ -3,47 +3,53 @@
 #include <iostream>
 #include <string>
 
-/**
-* \brief Класс Вектор (список)
-*/
-class Vector
+namespace dbms
 {
-    private:
+    class Vector;
+
+    std::wstring ToString(Vector& vector);
 
     /**
-    * \brief Размер массива.
+    * \brief Класс Вектор (список)
     */
-      size_t size;
+    class Vector
+    {
+    private:
 
-      /**
-      * \brief Данные.
-      */
-      int* data;
+        /**
+        * \brief Размер массива.
+        */
+        size_t size;
 
-      /**
-      * \brief Копирующий конструктор.
-      */
-      Vector(const Vector& other) = delete;
+        /**
+        * \brief Данные.
+        */
+        int* data;
 
-      /**
-      * \brief Перемещающий конструктор.
-      */
-      Vector(Vector&& other) = delete;
+        /**
+        * \brief Копирующий конструктор.
+        */
+        Vector(const Vector& other) = delete;
 
-      /**
-      * \brief Оператор копирования.
-      */
-      Vector& operator =(const Vector& other) = delete;
+        /**
+        * \brief Перемещающий конструктор.
+        */
+        Vector(Vector&& other) = delete;
 
-      /**
-      * \brief Оператор перемещения.
-      */
-      Vector& operator =(Vector&& other) = delete;
+        /**
+        * \brief Оператор копирования.
+        */
+        Vector& operator =(const Vector& other) = delete;
+
+        /**
+        * \brief Оператор перемещения.
+        */
+        Vector& operator =(Vector&& other) = delete;
 
     public:
         /**
         */
-        Vector(int size);
+        Vector(const int size);
 
         /**
         */
@@ -53,9 +59,14 @@ class Vector
         */
         ~Vector();
 
+        size_t GetSize() const noexcept;
+
         /**
         */
         std::string ToString();
+
+
+        const int& operator[](std::size_t idx);
 
         /**
         */
@@ -77,4 +88,5 @@ class Vector
         */
         void Sort();
 
-};
+    };
+}
