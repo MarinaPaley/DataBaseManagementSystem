@@ -26,20 +26,12 @@ namespace dbms
         */
         int* data;
 
-        /**
-        * \brief Копирующий конструктор.
-        */
-        Vector(const Vector& other) = delete;
+        static int constexpr MAX_SIZE = 10000;
 
         /**
         * \brief Перемещающий конструктор.
         */
         Vector(Vector&& other) = delete;
-
-        /**
-        * \brief Оператор копирования.
-        */
-        Vector& operator =(const Vector& other) = delete;
 
         /**
         * \brief Оператор перемещения.
@@ -49,11 +41,21 @@ namespace dbms
     public:
         /**
         */
-        Vector(const int size);
+        explicit Vector(const int size);
 
         /**
         */
         Vector(std::initializer_list<int> values);
+
+        /**
+        * \brief Копирующий конструктор.
+        */
+        Vector(const Vector& other);
+
+        /**
+* \brief Оператор копирования.
+*/
+        Vector& operator =(const Vector& other);
 
         /**
         */
@@ -63,7 +65,7 @@ namespace dbms
 
         /**
         */
-        std::string ToString();
+        std::string ToString() const noexcept;
 
 
         const int& operator[](std::size_t idx);
@@ -78,15 +80,15 @@ namespace dbms
 
         /**
         */
-        int GetMin();
+        int GetMin() const noexcept;
 
         /**
         */
-        int GetMax();
+        int GetMax() const noexcept;
 
         /**
         */
-        void Sort();
+        void Sort() noexcept;
 
     };
 }

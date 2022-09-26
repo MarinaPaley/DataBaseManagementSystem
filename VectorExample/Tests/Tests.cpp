@@ -50,5 +50,23 @@ namespace Tests
 			// Assert
 			Assert::AreEqual(expected, actual);
 		}
+
+		TEST_METHOD(CopyCtor_Success)
+		{
+			// Arrange
+			auto other = new dbms::Vector { 1, 2, 3, 4, 5 };
+			size_t actualSize = 5;
+			const int actualData = 1;
+
+			// Act
+			auto vector = new dbms::Vector(*other);
+			delete other;
+
+			// Assert
+			Assert::AreEqual(actualSize, vector->GetSize());
+			Assert::AreEqual(actualData, (*vector)[0]);
+		}
 	};
+
+
 }

@@ -26,6 +26,41 @@ Vector::Vector(std::initializer_list<int> values)
     }
 }
 
+dbms::Vector::Vector(const Vector& other)
+    : size(other.size)
+{
+    this->data = new int[this->GetSize()];
+    for (size_t index = 0; index < this->GetSize(); index++)
+    {
+        this->data[index] = other.data[index];
+    }
+}
+
+Vector& dbms::Vector::operator=(const Vector& other)
+{
+    if (this != &other)
+    {
+        if (this->GetSize() != other.GetSize())
+        {
+            if (this->data != nullptr)
+            {
+                delete[] this->data;
+                this->data = nullptr;
+                this->size = 0;
+            }
+            this->size = other.GetSize();
+            this->data = new int[this->GetSize()];
+        }
+
+        for (size_t index = 0; index < this->GetSize(); index++)
+        {
+            this->data[index] = other.data[index];
+        }
+    }
+    if (this->data != nullptr)
+    // TODO: вставьте здесь оператор return
+}
+
 Vector::~Vector()
 {
     if (this->data != nullptr)
@@ -40,7 +75,7 @@ size_t dbms::Vector::GetSize() const noexcept
     return this->size;
 }
 
-std::string Vector::ToString()
+std::string Vector::ToString() const noexcept
 {
     std::stringstream buffer;
     buffer << "{ ";
@@ -48,7 +83,7 @@ std::string Vector::ToString()
     {
         buffer << this->data[index] << ' ';
     }
-    buffer << " }";
+    buffer << "}";
     return buffer.str();
 }
 
@@ -58,6 +93,7 @@ const int& dbms::Vector::operator[](std::size_t idx)
     {
         throw std::out_of_range("Индекс превосходит размер массива.");
     }
+
     return this->data[idx];
 }
 
