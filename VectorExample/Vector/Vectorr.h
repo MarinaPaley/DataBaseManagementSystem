@@ -29,11 +29,6 @@ namespace dbms
         static int constexpr MAX_SIZE = 10000;
 
         /**
-        * \brief Перемещающий конструктор.
-        */
-        Vector(Vector&& other) = delete;
-
-        /**
         * \brief Оператор перемещения.
         */
         Vector& operator =(Vector&& other) = delete;
@@ -51,6 +46,11 @@ namespace dbms
         * \brief Копирующий конструктор.
         */
         Vector(const Vector& other);
+
+        /**
+        * \brief Перемещающий конструктор.
+        */
+        Vector(Vector&& other);
 
         /**
 * \brief Оператор копирования.

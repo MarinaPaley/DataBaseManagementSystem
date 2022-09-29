@@ -36,6 +36,18 @@ dbms::Vector::Vector(const Vector& other)
     }
 }
 
+dbms::Vector::Vector(Vector&& other)
+    : size(other.size)
+{
+    this->data = new int[this->GetSize()];
+    for (size_t index = 0; index < this->GetSize(); index++)
+    {
+        this->data[index] = other.data[index];
+    }
+    delete[] other.data;
+    other.data = nullptr;
+}
+
 Vector& dbms::Vector::operator=(const Vector& other)
 {
     if (this != &other)
